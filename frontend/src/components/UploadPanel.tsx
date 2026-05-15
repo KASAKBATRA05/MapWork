@@ -48,8 +48,9 @@ const UploadPanel: React.FC<UploadPanelProps> = ({ onData }) => {
     formData.append("file", file);
 
     try {
+      const apiUrl = import.meta.env.VITE_API_URL || "http://localhost:8000";
       const res = await axios.post<BackendResponse>(
-        "http://localhost:8000/upload-excel",
+        `${apiUrl}/upload-excel`,
         formData,
         { headers: { "Content-Type": "multipart/form-data" } }
       );
